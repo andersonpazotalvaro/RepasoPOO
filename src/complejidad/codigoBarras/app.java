@@ -1,6 +1,8 @@
 package complejidad.codigoBarras;
 import domain.metodoscodbarras;
 import domain.codigoBarras;
+import domain.codigoTarjeta;
+import domain.metodoscodTarjeta;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,6 +12,8 @@ public class app {
     public static void main(String[] args) {
 
         metodoscodbarras metodos=new metodoscodbarras();
+        metodoscodTarjeta Tmetodos=new metodoscodTarjeta();
+        Tmetodos.Tcodigo=new ArrayList<>();
         metodos.codigo= new ArrayList<>();
 
 
@@ -35,11 +39,25 @@ public class app {
             }while (numeroCodigo2 != 0);
 
 
-                metodos.validarPais();
+                metodos.validarPaisyControl();
 
 
         }else{
-            JOptionPane.showMessageDialog(null,"instruciones asdasd");
+
+            metodoscodbarras codigos=new metodoscodbarras();
+            codigoTarjeta codigoNuevo;
+
+            String numeroCodigo="";
+            long numeroCodigo2;
+            do{
+            numeroCodigo=JOptionPane.showInputDialog(null, "ingrese codigo");
+            numeroCodigo2 = Long.parseLong(numeroCodigo);
+            codigoNuevo=new codigoTarjeta(numeroCodigo);
+            Tmetodos.Tcodigo.addAll(Arrays.asList(codigoNuevo));
+            }while (numeroCodigo2 != 0);
+            Tmetodos.validarTarjeta();
+
+
         }
 
 
