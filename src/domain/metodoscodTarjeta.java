@@ -7,15 +7,15 @@ import java.util.List;
 public class metodoscodTarjeta {
     public codigoTarjeta Tcodigos;
     public List<codigoTarjeta> Tcodigo;
-    long numero;
-    long acumSumaPares;
-    long acumSumaImpares;
-    long acumTotal;
+    long numero; /*esta variable guardara el codigo de tarjeta */
+    long acumSumaPares; /*esta variable guardara el acumulado de los numeros pares */
+    long acumSumaImpares; /*esta variable guardara el acumulado de los numeros impares */
+    long acumTotal; /*esta variable guardara el acumulado de los numeros pares */
     long numerosumado;
     long contador;
     public void validarTarjeta(){
         Tcodigo.forEach(Tcodigo -> {
-
+/*aca si el numero es de mas de 9 se separa su decena y se divide en 10 (1) y se suma su otra parte*/
             for(int i=0; i<Tcodigo.numero.length()-1;i+=2){
                 numero = Long.parseLong(String.valueOf(Tcodigo.numero.charAt(i)))*2;
                 if(numero>9){

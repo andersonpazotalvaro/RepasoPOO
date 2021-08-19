@@ -8,14 +8,21 @@ public class metodoscodbarras {
     public List<codigoBarras> codigo;
 
 
-    long pares=0;
-    long impar=0;
-    long resultado=0;
-    long redondeo=0;
-    long control=0;
-    int swch;
-    int numeroCeros;
+    long pares=0; /*esta variable guardara el acumulado de los numeros pares */
+    long impar=0; /*esta variable guardara el acumulado de los numeros impares */
+    long resultado=0; /*esta variable guarda la multiplicacion de impares por 3 mas los pares */
+    long redondeo=0; /*esta variable guardara el redondeo del resultado */
+    long control=0; /*esta variable guardara el numero de control para luego confirmar si coincide */
+    int swch; /*esta variable es para saber si el programa tuvo que colocar ceros a la izquierda */
+    int numeroCeros; /*esta variable determina cuantos ceros se pusieron a la izquierda */
     String ceros="";
+
+    /**
+     * @valiarPaisyControl .....
+     * variables.....
+     * resultado.....
+     */
+    /*esta variable guarda los ceros para luego ser concatenados a la izquierda */
     public void validarPaisyControl() {
 
         codigo.forEach(codigo -> {
@@ -24,7 +31,9 @@ public class metodoscodbarras {
             resultado=0;
             redondeo=0;
             swch=0;
-
+            /*se reinician el valor de las variables despues de cada ciclo del for */
+            /*en este condicional se verifica que la cadena tenga 13 o menos digitos ademas si no es de 13 digitos
+             se concatenan ceros a la izquierda*/
             if (codigo.numero.length()<13){
                 numeroCeros=13-codigo.numero.length();
                 for (int i=0;i<numeroCeros;i++){
@@ -47,14 +56,17 @@ public class metodoscodbarras {
                  redondeo= (long) Math.ceil(resultado/10)*10;
                  redondeo = redondeo+10;
                  control = redondeo - resultado;
-
+            /*solo entran a este condicional si el digito de control es correcto*/
                  if (control==Long.parseLong(String.valueOf(codigo.numero.charAt(12)))){
+           /*si el codigo comienza con cero pertenece a EEUU pero si se concatenaron ceros a la izquierda no */
                      if(Long.parseLong(String.valueOf(codigo.numero.charAt(0)))==0 && swch==0){
                          JOptionPane.showMessageDialog(null,"YES EEUU");
                      }
+                     /*si el codigo comienza con 380 pertenece a bulgaria*/
                      if(Long.parseLong(String.valueOf(codigo.numero.charAt(0)))==3 && Long.parseLong(String.valueOf(codigo.numero.charAt(1)))==8 && Long.parseLong(String.valueOf(codigo.numero.charAt(2)))==0){
                          JOptionPane.showMessageDialog(null,"YES Bulgaria");
                      }
+                     /*si el codigo comienza con 50 pertenece a inglaterra*/
                      if(Long.parseLong(String.valueOf(codigo.numero.charAt(0)))==5 && Long.parseLong(String.valueOf(codigo.numero.charAt(1)))==0){
                          JOptionPane.showMessageDialog(null,"YES Inglaterra");
                      }else{
